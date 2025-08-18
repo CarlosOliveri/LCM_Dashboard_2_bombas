@@ -1,0 +1,15 @@
+{
+  "name": "lcm_2_bombas_vacio",
+  "type":"module",
+  "version": "1.0.0",
+  "description": "monitoreo de funcionamieno de bombas de vacio",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Carlos Oliveri",
+  "license": "ISC",
+  "dependencies": {
+    "mqtt": "^5.14.0"
+  }
+}
