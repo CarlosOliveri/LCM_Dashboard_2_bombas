@@ -9,48 +9,105 @@
     <link rel="stylesheet" href="/src/css/normalize.css">
     <link rel="stylesheet" href="/src/css/styles.css">
 </head>
-<body>
+<body class="body-normal">
     <header>
+        <div class="logo-oapsa">
+            <img src="/src/img/logo_oa.jfif" alt="Logo Oapsa">
+            <div class="logo-texto">
+                <h1>OAPSA</h1>
+                <p>Automation</p>
+            </div>
+        </div>
         <div class="barra">
             <div class="logo">
                 <img src="" alt="">
             </div>
             <nav>
                 <a href="#">home</a>
+                <a href="#">Cerrar Sesión</a>
             </nav>
         </div>
     </header>
 
     <main>
-        <h1>Monitoreo de Tanque de Vacío</h1>
+        <h2>Monitoreo de Tanque de Vacío</h2>
         <div class="modo-auto-manual">
             <h2>Automatico</h2>
         </div>
         <div class="contenedor contenido-main">
             <div class="contenido-main__elemeto ident-principal1 elemento bomba-principal">
                 <div class="icon-onoff"><i class="fa-solid fa-power-off" style="color: #74C0FC;"></i></div>
-                <h2>Bomba 1</h2>
+                <h3>Bomba 1</h3>
                 <div class="parrafo bomba1">
                     <p>Apagado</p>
                 </div>
+                <p>horas: <span class="horas-marcha">--</span> h</p>
+                <p>Mantenimientos Realizados: <span class="num-mant">--</span></p>
+                <div class="mantenimiento mant1">
+                    <p></p>
+                </div>
             </div>
             <div class="contenido-main__elemeto elemento tanque">
-                <h2>Tanque</h2>
+                <h3>Tanque</h3>
                 <img src="/src/img/tanque_lleno.png" alt="tanque de vacio">
             </div>
             <div class="contenido-main__elemeto ident-principal2 elemento ">
                 <div class="icon-onoff"><i class="fa-solid fa-power-off" style="color: #74C0FC;"></i></div>
-                <h2>Bomba 2</h2>
+                <h3>Bomba 2</h3>
                 <div class="parrafo bomba2">
                     <p>Apagado</p>
                 </div>
+                <p>horas: <span class="horas-marcha">--</span> h</p>
+                <p>Mantenimientos Realizados: <span class="num-mant">--</span></p>
+                <div class="mantenimiento mant2">
+                    <p></p>
+                </div>
+            </div>
+
+            <div class="contenido-main__elemeto elemento info-adicional">
+                <h3>Informacion Adicional del Sistema</h3>
+                <div class="alternancia">
+                    <i class="fa-solid fa-arrows-left-right" style="color: #74C0FC;"></i>
+                    <p>Alternancia Activada</p>
+                </div>
+
             </div>
 
             <div class="contenido-main__elemeto elemento avisos">
-                <h2>Avisos</h2>
+                <h3>Avisos</h3>
+                <div class="aviso">
+                    <p>Falla de Bomba 1: </p>
+                    <div id="falla-1" class="falla"></div>
+                </div>
+
+                <div class="aviso">
+                    <p>Falla de Bomba 2: </p>
+                    <div id="falla-2" class="falla"></div>
+                </div>
+
+                <div class="aviso">
+                    <p>Parada de Emergencia Pulsada: </p>
+                    <div id="PE" class="parada-emergencia"></div>
+                </div>
+
+                <div class="aviso">
+                    <p>Tiempo sin Refuerzo Excedido: </p>
+                    <div id="sin-refuerzo" class="tiempo-refuerzo"></div>
+                </div>
+
+                <div class="aviso">
+                    <p>Refuerzo Activo por mucho tiempo: </p>
+                    <div id="con-refuerzo" class="tiempo-refuerzo"></div>
+                </div>
+
             </div>
         </div>
     </main>
+
+    <footer>
+        <p>Desarrollado por <a href="#">OAPSA</a>
+        <p>© 2023 Monitoreo de Bombas de Vacio. Todos los derechos reservados.</p>
+    </footer>
     
     <script src="https://unpkg.com/mqtt/dist/mqtt.min.js"></script>
     <script type="module" src="/src/js/app.js"></script>
