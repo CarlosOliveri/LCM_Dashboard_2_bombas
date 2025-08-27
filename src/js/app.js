@@ -5,13 +5,18 @@ const bomba2 = new Bomba(2);
 const avisos = [];
 
 let miObjeto = {
-  miVariable: 10
+    miVariable: 10
 };
 
-const URL = "http://3.130.224.82:1880/lcm/get_datos_sistema";
+const SERVER = "localhost";
+
+const URL = `http://${SERVER}:1880/lcm/get_datos_sistema`;
 let datos = {};
 setInterval(()=>{
-    fetch(URL)
+    fetch(URL, {
+        method: "GET",
+        credentials: "include"   // 🔑 Esto hace que se envíen cookies
+    })
         .then((response) => response.json())
         .then((data) => {
             datos = data;
@@ -59,9 +64,9 @@ const actualizarSistema = async () => {
     //Actualizar Imagen de Tanque 
     const imagen = contenedorImagenTanque.children[1];
     if(datos["Entrada_Vacuostato"] === false){
-        imagen.src = "../src/img/tanque_vacio.png";
+        imagen.src = "/lcm/tanque_vacio.png";
     }else{
-        imagen.src = "../src/img/tanque_lleno.png";
+        imagen.src = "/lcm/tanque_lleno.png";
     }
 
     //Parada de Emergencia
@@ -91,18 +96,17 @@ const actualizarSistema = async () => {
     bomba2.mantenimientoRealizada(numMantenimientos[1]);
 
     //horas de funcionamiento
-    const horasMarcha = document.querySelectorAll(".horas-marcha");
-    bomba2.renderizarHorasMarcha(horasMarcha[1]);
-    bomba1.renderizarHorasMarcha(horasMarcha[0]);
+    const horasMarcha1 = document.querySelector("#horas-marcha1");
+    const horasMarcha2 = document.querySelector("#horas-marcha2");
+    bomba2.renderizarHorasMarcha(horasMarcha2);
+    bomba1.renderizarHorasMarcha(horasMarcha1);
 
     //alternancia
     const alternancia = document.querySelector(".alternancia").querySelector("p");
     if(datos["Alternar_Motores_Automaticamente"] === true){
-        alternancia.classList.add("alternancia-activada");
-        alternancia.textContent = "Alternancia Activada";
+        alternancia.textContent = "Alternancia activada";
     }else{
-        alternancia.classList.remove("alternancia-activada");
-        alternancia.textContent = "Alternancia Desactivada";
+        alternancia.textContent = "Alternancia desactivada";
     }
     //Avisos
     const falla1 = document.querySelector("#falla-1");
@@ -120,7 +124,7 @@ const actualizarSistema = async () => {
     }
 
     const conRef = document.querySelector("#con-refuerzo");
-    if(datos["Alarma_Refuerzo_Mucho_Tiempo"] === true){
+    if(datos["Alarma_refuerzo_mucho_tiempo"] === true){
         conRef.classList.add("alarma-activa");
         conRef.classList.remove("alarma-desactivada");
     }else{
@@ -130,3 +134,22 @@ const actualizarSistema = async () => {
 
 }
 setInterval(actualizarSistema,1000);
+
+const botonLogout = document.querySelector(".logout-bt");
+botonLogout.addEventListener("click", ()=>{
+    fetch(`http://${SERVER}:1880/lcm/logout`, {
+        method: 'GET',
+        headers: { 'Accept': 'application/json' },
+        credentials: 'include'
+    }).then(response => { 
+        if (response.ok) {
+            window.location.href = `http://${SERVER}:1880/lcm/login`;
+            //return response.json();
+        } else {
+            return new Error("Error en logout")
+        }
+    }).catch((e) => {
+        console.log("Error en logout", e);
+    })
+});
+

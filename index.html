@@ -12,19 +12,19 @@
 <body class="body-normal">
     <header>
         <div class="logo-oapsa">
-            <img src="/src/img/logo_oa.jfif" alt="Logo Oapsa">
-            <div class="logo-texto">
+            <img src="/src/img/logo-lcm.png" alt="Logo Oapsa">
+            <!-- <div class="logo-texto">
                 <h1>OAPSA</h1>
                 <p>Automation</p>
-            </div>
+            </div> -->
         </div>
         <div class="barra">
             <div class="logo">
                 <img src="" alt="">
             </div>
             <nav>
-                <a href="#">home</a>
-                <a href="#">Cerrar Sesión</a>
+                <!-- <a href="#">home</a> -->
+                <a class="logout-bt" href="#">Cerrar Sesión</a>
             </nav>
         </div>
     </header>
@@ -41,7 +41,7 @@
                 <div class="parrafo bomba1">
                     <p>Apagado</p>
                 </div>
-                <p>horas: <span class="horas-marcha">--</span> h</p>
+                <p>horas: <span id="horas-marcha1" class="horas-marcha1">--</span> h</p>
                 <p>Mantenimientos Realizados: <span class="num-mant">--</span></p>
                 <div class="mantenimiento mant1">
                     <p></p>
@@ -49,7 +49,7 @@
             </div>
             <div class="contenido-main__elemeto elemento tanque">
                 <h3>Tanque</h3>
-                <img src="/src/img/tanque_lleno.png" alt="tanque de vacio">
+                <img src="/src/img/tanque_lleno_op.png" alt="tanque de vacio">
             </div>
             <div class="contenido-main__elemeto ident-principal2 elemento ">
                 <div class="icon-onoff"><i class="fa-solid fa-power-off" style="color: #74C0FC;"></i></div>
@@ -57,7 +57,7 @@
                 <div class="parrafo bomba2">
                     <p>Apagado</p>
                 </div>
-                <p>horas: <span class="horas-marcha">--</span> h</p>
+                <p>horas: <span id="horas-marcha2" class="horas-marcha2">--</span> h</p>
                 <p>Mantenimientos Realizados: <span class="num-mant">--</span></p>
                 <div class="mantenimiento mant2">
                     <p></p>
@@ -104,9 +104,8 @@
         </div>
     </main>
 
-    <footer>
-        <p>Desarrollado por <a href="#">OAPSA</a>
-        <p>© 2023 Monitoreo de Bombas de Vacio. Todos los derechos reservados.</p>
+    <footer class="footer">
+        <p>2025 Monitoreo de Bombas de Vacio. Desarrollado por <a href="https://www.oaparaguay.com/">OAPSA</a></p>
     </footer>
     
     <script src="https://unpkg.com/mqtt/dist/mqtt.min.js"></script>
